@@ -195,7 +195,7 @@ class RoomChatViewController: JSQMessagesViewController {
         if message.senderId == self.senderId{
             return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor(red:0.72, green:0.71, blue:0.71, alpha:1.0))
         }else{
-            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor(red:0.72, green:0.71, blue:0.71, alpha:1.0))
+            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor(red:0.77, green:0.33, blue:0.22, alpha:1.0))
         }
     }
     
@@ -287,26 +287,26 @@ class RoomChatViewController: JSQMessagesViewController {
     func sendMedia(picture:UIImage?, video:NSURL?){
         print (picture!)
         print(FIRStorage.storage().reference())
-        if let picture = picture{
-            let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(NSDate.timeIntervalSinceReferenceDate)"
+        if let picture = picture{ //Media是照片
+            let filePath = "\(NSDate.timeIntervalSinceReferenceDate)"
+            //let filePath = "\(FIRAuth.auth()!.currentUser!)/\(NSDate.timeIntervalSinceReferenceDate)"
+            //用目前使用者和時間來區別不同的filePath
             print(filePath)
-            let data = UIImageJPEGRepresentation(picture, 1)//1,0是否壓縮
+            let data = UIImageJPEGRepresentation(picture, 0.1)// return image as JPEG, 1表示不壓縮，把UIImage轉成NSData
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/jpg"
+            
+            FIRStorage.storage().reference().child(filePath).put(data!, metadata: metadata){(metadata, error) in
             //child:存照片的地方, put:上傳照片到storage
-            FIRStorage.storage().reference().child(filePath).put(data!, metadata: metadata){(metadata, error)in
                 if error != nil{
-                    print("there's an error")
-                    //print(error.localizedDescription)
+                    print(error?.localizedDescription)
                     return
                 }
-                print(metadata!)
-                let fileURL = metadata!.downloadURLs![0].absoluteString
-                
+                //print(metadata)
+                let fileUrl = metadata!.downloadURLs![0].absoluteString //!:not nil, Get the URL string from URL
                 let newMessage = self.messageRef.childByAutoId()
-                let messageData = ["fileURL":fileURL, "senderId":self.senderId, "senderName":self.senderDisplayName, "MediaType":"PHOTO"]
+                let messageData = ["fileUrl": fileUrl, "senderId": self.senderId, "senderName": self.senderDisplayName, "MediaType": "PHOTO"]
                 newMessage.setValue(messageData)
-                
             }
         }else if let video = video{
             let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\(NSDate.timeIntervalSinceReferenceDate)"
@@ -332,21 +332,20 @@ class RoomChatViewController: JSQMessagesViewController {
 }
 
 extension RoomChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
         print("完成選擇媒體")
-        //get the image info 可能之後有GPS資訊
+        //取得圖片
         print(info)
-        if let picture = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            let photo = JSQPhotoMediaItem(image: picture)
-            messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: photo))
-            sendMedia(picture:picture, video:nil)
+        if let picture = info[UIImagePickerControllerOriginalImage] as? UIImage{//訊息是照片
+            sendMedia(picture: picture, video: nil)
         }
-        else if let video = info[UIImagePickerControllerMediaURL]as? NSURL{
-            let videoItem = JSQVideoMediaItem(fileURL: (video as NSURL!) as URL!, isReadyToPlay: true)
-            messages.append(JSQMessage(senderId:senderId, displayName: senderDisplayName, media:videoItem))
-            sendMedia(picture: nil, video:video)
+        else if let video = info[UIImagePickerControllerMediaURL] as? NSURL{//訊息是影片
+            //let videoItem = JSQVideoMediaItem(fileURL: video as URL!, isReadyToPlay: true)
+            //messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, media: videoItem))
+            //sendMedia(picture: nil, video: video)
         }
-        self.dismiss(animated: true, completion: nil)
-        collectionView.reloadData()
+        
+        self.dismiss(animated: true, completion: nil) //照片選完相簿就消失(imagePicker)
+        collectionView.reloadData() //每次重新整理，讓id可以++
     }
 }
