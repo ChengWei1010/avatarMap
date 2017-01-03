@@ -12,7 +12,6 @@
 		794396811E18DC1800E7C145 /* RoomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794396801E18DC1800E7C145 /* RoomMapViewController.swift */; };
 		794396831E18DC2A00E7C145 /* RoomChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794396821E18DC2A00E7C145 /* RoomChatViewController.swift */; };
 		794396851E18E36300E7C145 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 794396841E18E36300E7C145 /* logo.jpg */; };
-		794396871E18F47000E7C145 /* default-user-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 794396861E18F47000E7C145 /* default-user-image.png */; };
 		795D6B3B1E1B6A17008734F7 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 795D6B3A1E1B6A17008734F7 /* user.png */; };
 		79694D0A1E1B4E2400CF6EF2 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79694D091E1B4E2400CF6EF2 /* WelcomeViewController.swift */; };
 		79A9400C1DF40B5100BA0EDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9400B1DF40B5100BA0EDB /* AppDelegate.swift */; };
@@ -55,7 +54,6 @@
 		794396801E18DC1800E7C145 /* RoomMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomMapViewController.swift; path = GoChat/RoomMapViewController.swift; sourceTree = "<group>"; };
 		794396821E18DC2A00E7C145 /* RoomChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomChatViewController.swift; path = GoChat/RoomChatViewController.swift; sourceTree = "<group>"; };
 		794396841E18E36300E7C145 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = logo.jpg; path = Images/logo.jpg; sourceTree = "<group>"; };
-		794396861E18F47000E7C145 /* default-user-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user-image.png"; sourceTree = "<group>"; };
 		795D6B3A1E1B6A17008734F7 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = user.png; path = Images/user.png; sourceTree = "<group>"; };
 		79694D091E1B4E2400CF6EF2 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = GoChat/WelcomeViewController.swift; sourceTree = "<group>"; };
 		79A940081DF40B5100BA0EDB /* GoChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +157,6 @@
 		795D6B3C1E1B6AE2008734F7 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				794396861E18F47000E7C145 /* default-user-image.png */,
 				795D6B3A1E1B6A17008734F7 /* user.png */,
 			);
 			name = image;
@@ -329,7 +326,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				79A940161DF40B5100BA0EDB /* LaunchScreen.storyboard in Resources */,
-				794396871E18F47000E7C145 /* default-user-image.png in Resources */,
 				795D6B3B1E1B6A17008734F7 /* user.png in Resources */,
 				79A940441DF423F600BA0EDB /* GoogleService-Info.plist in Resources */,
 				79ABC9221E18D02E00957545 /* Assets.xcassets in Resources */,

@@ -64,29 +64,29 @@ class RoomChatViewController: JSQMessagesViewController {
         //observeUsers(uuid: senderId)
         observeMessages()
     }
-    func observeUsers(uuid: String){
-        self.roomRef.child("roomUsers").child(uuid).observe(FIRDataEventType.value){
-            (snapshot: FIRDataSnapshot) in
-            if let chatdict = snapshot.value as? [String:Any]
-            {
-                print("my room dict\(chatdict)")
-                let avatarUrl = chatdict["UserImgUrl"] as! String
-                //
-                print("i want url\(avatarUrl)")
-                self.setupAvatar(url: avatarUrl, messageId: uuid)
-                
-                let myid = String(self.senderId)
-                //根據roomUser senderId(uuid)去資料庫抓user的senderName
-                //取出我的暱稱
-                if (chatdict["id"] as! String) == myid {
-                    //取出我的暱稱
-                    let myname = chatdict["NickName"] as! String
-                    print("myname is " + myname)
-                    self.senderDisplayName = myname
-                }
-            }
-        }
-    }
+//    func observeUsers(uuid: String){
+//        self.roomRef.child("roomUsers").child(uuid).observe(FIRDataEventType.value){
+//            (snapshot: FIRDataSnapshot) in
+//            if let chatdict = snapshot.value as? [String:Any]
+//            {
+//                print("my room dict\(chatdict)")
+//                let avatarUrl = chatdict["UserImgUrl"] as! String
+//                //
+//                print("i want url\(avatarUrl)")
+//                self.setupAvatar(url: avatarUrl, messageId: uuid)
+//                
+//                let myid = String(self.senderId)
+//                //根據roomUser senderId(uuid)去資料庫抓user的senderName
+//                //取出我的暱稱
+//                if (chatdict["id"] as! String) == myid {
+//                    //取出我的暱稱
+//                    let myname = chatdict["NickName"] as! String
+//                    print("myname is " + myname)
+//                    self.senderDisplayName = myname
+//                }
+//            }
+//        }
+//    }
     func setupAvatar(url: String, messageId:String){
         if url != ""{
             let fileUrl = NSURL(string: url)
@@ -110,7 +110,7 @@ class RoomChatViewController: JSQMessagesViewController {
                 let senderId = dict["senderId"] as! String
                 let senderName = dict["senderName"] as! String
                 
-                self.observeUsers(uuid: senderId)
+                //self.observeUsers(uuid: senderId)
                 
                 switch mediaType{
                 case "TEXT":
@@ -288,8 +288,8 @@ class RoomChatViewController: JSQMessagesViewController {
         print (picture!)
         print(FIRStorage.storage().reference())
         if let picture = picture{ //Media是照片
-            let filePath = "\(NSDate.timeIntervalSinceReferenceDate)"
-            //let filePath = "\(FIRAuth.auth()!.currentUser!)/\(NSDate.timeIntervalSinceReferenceDate)"
+            //let filePath = "\(NSDate.timeIntervalSinceReferenceDate)"
+            let filePath = "\(FIRAuth.auth()!.currentUser!)/\(NSDate.timeIntervalSinceReferenceDate)"
             //用目前使用者和時間來區別不同的filePath
             print(filePath)
             let data = UIImageJPEGRepresentation(picture, 0.1)// return image as JPEG, 1表示不壓縮，把UIImage轉成NSData

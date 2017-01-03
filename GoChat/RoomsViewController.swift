@@ -43,26 +43,13 @@ class RoomsViewController: UIViewController {
         }
     }
     
-    // MARK :Actions
-    //登出
-    @IBAction func Logout(_ sender: Any) {
-        print("User logged out")
-        do{
-            try FIRAuth.auth()?.signOut()
-        }catch let error{
-            print(error)
-        }
-        print(FIRAuth.auth()?.currentUser)
-        //Create a main storyboard instance
-        let storyboard = UIStoryboard(name : "Main", bundle: nil)
-        
-        //From main storyboard instantiate a View controller
-        let LoginVC = storyboard.instantiateViewController(withIdentifier:"LoginVC")as!LoginViewController
-        //Get the app delegate
-        let appDelegate = UIApplication.shared.delegate as!AppDelegate
-        //Set Login Conteoller as root view controller
-        appDelegate.window?.rootViewController = LoginVC
+    @IBAction func EditProfile(_ sender: Any) {
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let UserInfoVC = storyBoard.instantiateViewController(withIdentifier: "LoginVC")
+//        self.present(UserInfoVC, animated:true, completion:nil)
     }
+    // MARK :Actions
+
     //創新房間到房間資料庫中
     @IBAction func NewRoom(_ sender: Any) {
         if InputRoomName?.text != ""{                                   //房間名的input field不可為空
@@ -164,7 +151,7 @@ class RoomsViewController: UIViewController {
             let targetNum = self.InputRoomNum.text! as String
             chatVc.senderDisplayName = senderDisplayName!
             chatVc.targetRoomNum = targetNum
-            print("傳segue進聊天地圖中...")
+            print("傳segue進切割畫面中...")
         }
         else{print("傳值error!!!!!!!!!!!")}
     }    

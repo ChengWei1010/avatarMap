@@ -239,10 +239,10 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vR2-Yz-76T">
-                        <barButtonItem key="leftBarButtonItem" title="登出" id="trX-Ye-m5K">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="leftBarButtonItem" title="修改個人檔案" id="4K2-qg-tLk">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="Logout:" destination="ovH-f5-pHf" id="njy-qr-jMH"/>
+                                <action selector="EditProfile:" destination="ovH-f5-pHf" id="NWB-xQ-i0z"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -290,37 +290,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ds-yg-q7Z">
-                                <rect key="frame" x="0.0" y="293" width="375" height="330"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ds-yg-q7Z" userLabel="Map Container View">
+                                <rect key="frame" x="0.0" y="285" width="375" height="338"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="330" id="Gmm-eP-Zwk"/>
+                                    <constraint firstAttribute="height" constant="338" id="W4o-3q-C19"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="zpt-v9-M7i" kind="embed" identifier="showChat" id="6RP-xp-c2O"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1M-Qt-gmS">
-                                <rect key="frame" x="193" y="255" width="68" height="30"/>
-                                <state key="normal" title="Refresh"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eni-cv-mSM" userLabel="Chat Container View">
+                                <rect key="frame" x="0.0" y="64" width="375" height="221"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="221" id="Al7-iA-0SM"/>
+                                </constraints>
                                 <connections>
-                                    <action selector="updateLocation" destination="Ezb-JR-hjq" eventType="touchUpInside" id="DdO-bq-rqw"/>
+                                    <segue destination="8ri-a3-0Uc" kind="embed" identifier="showMap" id="F5m-NZ-1Vx"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Moo-85-1mb">
-                                <rect key="frame" x="295" y="255" width="46" height="30"/>
-                                <state key="normal" title="Photo"/>
-                                <connections>
-                                    <action selector="choosePictureWithSender:" destination="Ezb-JR-hjq" eventType="touchUpInside" id="wpt-iq-Klw"/>
-                                </connections>
-                            </button>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Moo-85-1mb" firstAttribute="top" secondItem="JeS-FN-yxS" secondAttribute="bottom" constant="191" id="5eu-SX-L9q"/>
                             <constraint firstItem="2ds-yg-q7Z" firstAttribute="width" secondItem="dSz-mF-cOR" secondAttribute="width" id="H7f-DV-6JY"/>
+                            <constraint firstItem="eni-cv-mSM" firstAttribute="centerX" secondItem="dSz-mF-cOR" secondAttribute="centerX" id="OgS-yn-UgX"/>
+                            <constraint firstItem="eni-cv-mSM" firstAttribute="width" secondItem="dSz-mF-cOR" secondAttribute="width" id="WM5-lF-xPd"/>
                             <constraint firstItem="QRK-pM-NAw" firstAttribute="top" secondItem="2ds-yg-q7Z" secondAttribute="bottom" id="nJp-9D-9GP"/>
                             <constraint firstItem="2ds-yg-q7Z" firstAttribute="centerX" secondItem="dSz-mF-cOR" secondAttribute="centerX" id="pbV-im-6nW"/>
-                            <constraint firstItem="r1M-Qt-gmS" firstAttribute="top" secondItem="JeS-FN-yxS" secondAttribute="bottom" constant="191" id="pcf-t0-MOu"/>
+                            <constraint firstItem="eni-cv-mSM" firstAttribute="top" secondItem="JeS-FN-yxS" secondAttribute="bottom" id="xor-Cv-hcY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -337,14 +333,28 @@
                         <viewControllerLayoutGuide type="bottom" id="kB0-Qf-tcN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7g2-dL-kWB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="338"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.77618416674263369" blue="0.76522235488561863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDx-X1-cnG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3215" y="640"/>
+            <point key="canvasLocation" x="3214" y="637"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="4ja-Jj-8Hd">
+            <objects>
+                <viewController id="8ri-a3-0Uc" customClass="MapViewController" customModule="GoChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JYC-5b-Zpk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="STf-fR-4e2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3214" y="288"/>
         </scene>
     </scenes>
     <resources>

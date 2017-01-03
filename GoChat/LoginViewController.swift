@@ -30,16 +30,6 @@ class LoginViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //        print(FIRAuth.auth()?.currentUser)
-        //        FIRAuth.auth()?.addStateDidChangeListener({(auth:FIRAuth, user:FIRUser?)in
-        //            if user !=nil{
-        //                print(user)
-        //                Helper.helper.switchToNavigationViewController()
-        //            }else{
-        //                print("Unauthorized")
-        //            }
-        //        })
-        print("現在這人的uid是: \(FIRAuth.auth()?.currentUser?.uid)")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,7 +106,7 @@ class LoginViewController: UIViewController{
                     
                     let newUser = userRef.child(self.uuid)
                     if let userImgUrl = metadata?.downloadURLs![0].absoluteString{
-                        let newUserData = ["NickName":userName, "uid":userId, "uuid":self.uuid, "UserImgUrl":fileUrl]
+                        let newUserData = ["NickName":userName, "uuid":self.uuid, "UserImgUrl":fileUrl]
                         newUser.setValue(newUserData)
                     }
                     //在firebase新增使用者(郭郭之後要改掉這段)
